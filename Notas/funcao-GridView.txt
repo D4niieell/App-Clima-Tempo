@@ -1,0 +1,37 @@
+Classe GridView
+Uma matriz bidimensional de widgets com opção de rolagem.
+
+A direção do eixo principal de uma grade é a direção na qual ela rola ( scrollDirection ).
+
+Os layouts de grade mais comuns são GridView.count , que cria um layout com um número fixo de blocos no eixo transversal, e GridView.extent , que cria um layout com blocos que possuem uma extensão máxima no eixo transversal. Um SliverGridDelegate personalizado pode produzir um arranjo 2D arbitrário de filhos, incluindo arranjos desalinhados ou sobrepostos.
+Para criar uma grade com um grande (ou infinito) número de filhos, use o construtor GridView.builder com um SliverGridDelegateWithFixedCrossAxisCount ou um SliverGridDelegateWithMaxCrossAxisExtent para o gridDelegate.
+Para usar um SliverChildDelegate personalizado , use GridView.custom .
+Para criar uma matriz linear de filhos, use um ListView .
+Para controlar o deslocamento inicial da rolagem da visualização, forneça um controlador com a propriedade ScrollController.initialScrollOffset definida.
+
+Transição para CustomScrollView
+Um GridView é basicamente um CustomScrollView com um único SliverGrid em sua propriedade CustomScrollView.slivers .
+
+Se o GridView não for mais suficiente, por exemplo, porque a visualização de rolagem precisa ter tanto uma grade quanto uma lista, ou porque a grade precisa ser combinada com um SliverAppBar , etc., é muito simples migrar o código que usa GridView para usar CustomScrollView diretamente.
+
+As propriedades key , scrollDirection , reverse , controller , primary , physics e shrinkWrap do GridView correspondem diretamente às propriedades de mesmo nome no CustomScrollView .
+
+A propriedade CustomScrollView.slivers deve ser uma lista contendo apenas um SliverGrid .
+
+A propriedade childrenDelegate em GridView corresponde à propriedade SliverGrid.delegate , e a propriedade gridDelegate em GridView corresponde à propriedade SliverGrid.gridDelegate .
+
+Os argumentos dos construtores `GridView` , `GridView.count` e `GridView.extent`children correspondem ao `childrenDelegate` sendo um ` SliverChildListDelegate` com o mesmo argumento. Os argumentos do construtor `GridView.builder` correspondem ao `childrenDelegate` sendo um `SliverChildBuilderDelegate` com os argumentos correspondentes.itemBuilderchildCount
+
+Os construtores GridView.count e GridView.extent criam delegados de grade personalizados e possuem construtores com nomes equivalentes em SliverGrid para facilitar a transição: SliverGrid.count e SliverGrid.extent, respectivamente.
+
+A propriedade padding corresponde a ter um SliverPadding na propriedade CustomScrollView.slivers em vez da própria grade, e a ter o SliverGrid como filho do SliverPadding .
+
+Depois que o código for adaptado para usar o CustomScrollView , outros slivers, como SliverList ou SliverAppBar , podem ser adicionados à lista CustomScrollView.slivers .
+
+Persistir a posição de rolagem durante uma sessão
+Os widgets de rolagem tentam persistir sua posição de rolagem usando o PageStorage . Isso pode ser desativado definindo `ScrollController.keepScrollOffset` como `false` no controlador . Se estiver ativado, recomenda-se usar uma ` PageStorageKey` como chave deste widget para ajudar a diferenciar os widgets de rolagem.
+
+
+Exemplos
+Este exemplo demonstra como criar um GridView com duas colunas. 
+Os elementos filhos são espaçados usando as propriedades crossAxisSpacing`display` e `display` mainAxisSpacing .

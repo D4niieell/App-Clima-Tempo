@@ -12,7 +12,6 @@
 
 // · Mantenha o TituloSecao em lib/widgets/titulo_secao.dart e use-o em todos os títulos de seção das duas telas.
 
-
 // 2. Tela inicial e navegação
 
 // No main.dart:
@@ -117,7 +116,6 @@
 
 // Na seção “Próximos dias”, as 5 linhas repetem muito código. Crie um Widget personalizado LinhaPrevisao em lib/widgets/linha_previsao.dart, que receba String dia, IconData icone, String minima e String maxima, e use-o 5 vezes no lugar das Row repetidas.
 
-
 // Entrega
 
 // A entrega é via GitHub, no mesmo repositório do exercício anterior:
@@ -130,6 +128,11 @@
 
 // Importa as duas telas do app.
 import 'package:flutter/material.dart';
+import 'package:app_clima_tempo/models/clima.dart';
+import 'package:app_clima_tempo/screens/verClima.dart';
+import 'package:app_clima_tempo/screens/classe_Card.dart';
+import 'package:app_clima_tempo/widgets/classe_ListTile.dart';
+
 import 'screens/clima_atual.dart';
 import 'screens/previsao_semana.dart';
 
@@ -144,8 +147,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  // MaterialApp configura o app com o estilo Material Design.
-  return const MaterialApp(
+    // MaterialApp configura o app com o estilo Material Design.
+    return const MaterialApp(
       // A tela inicial agora é a HomeScreen.
       home: HomeScreen(),
     );
@@ -165,14 +168,14 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         // Centraliza os botões na vertical
         mainAxisAlignment: MainAxisAlignment.center,
-        // Centraliza os botõse na horizontal.
+        // Centraliza os botões na horizontal.
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ElevatedButton(
             onPressed: () {
-              // Navigator.push empilaha uma nova rota sobre a atual.
+              // Navigator.push empilha uma nova rota sobre a atual.
               Navigator.push(
-                context, 
+                context,
                 MaterialPageRoute(
                   builder: (context) => const ClimaAtualScreen(),
                 ),
@@ -195,4 +198,4 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-} 
+}
