@@ -141,6 +141,34 @@ void main() {
   runApp(const MyApp());
 }
 
+final List<Clima> cidades = [
+  Clima(
+    cidade: 'São Paulo',
+    temperaturaAtual: 24,
+    temperaturaMinima: 18,
+    temperaturaMaxima: 28,
+    umidade: 65,
+    chanceChuva: 30,
+    previsaoSemana: [
+      PrevisaoDia(diaSemana: 'Segunda', minima: 17, maxima: 27),
+      PrevisaoDia(diaSemana: 'Terça', minima: 18, maxima: 29),
+    ],
+  ),
+
+  Clima(
+    cidade: 'Rio de Janeiro',
+    temperaturaAtual: 31,
+    temperaturaMinima: 24,
+    temperaturaMaxima: 35,
+    umidade: 70,
+    chanceChuva: 10,
+    previsaoSemana: [
+      PrevisaoDia(diaSemana: 'Segunda', minima: 25, maxima: 34),
+      PrevisaoDia(diaSemana: 'Terça', minima: 24, maxima: 36),
+    ],
+  ),
+];
+
 // Widget raiz do app. É Stateless porque não guarda estado.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -165,36 +193,22 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('ClimaApp')),
-      body: Column(
-        // Centraliza os botões na vertical
-        mainAxisAlignment: MainAxisAlignment.center,
-        // Centraliza os botões na horizontal.
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              // Navigator.push empilha uma nova rota sobre a atual.
+      body: ListView.builder(
+        itemCount: cidades.length,
+        itemBuilder: (context, index) {
+          final clima = cidades[index];
+          return ListTile(
+            title: Text(clima.cidade),
+            subtitle: Text('${clima.temperaturaAtual.toStringAsFixed(0)} °C'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const ClimaAtualScreen(),
-                ),
+                MaterialPageRoute(builder: (context) => VerClima(clima: clima)),
               );
             },
-            child: const Text('Clima atual'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const PrevisaoSemanaScreen(),
-                ),
-              );
-            },
-            child: const Text('Previsão da semana'),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

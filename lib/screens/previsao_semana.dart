@@ -1,3 +1,4 @@
+import 'package:app_clima_tempo/models/clima.dart';
 import 'package:app_clima_tempo/widgets/titulo_secao.dart';
 import 'package:flutter/material.dart';
 
@@ -5,7 +6,8 @@ import 'package:flutter/material.dart';
 // import '../widgets/titulo_secao.dart';
 
 class PrevisaoSemanaScreen extends StatelessWidget {
-  const PrevisaoSemanaScreen({super.key});
+  final Clima clima;
+  const PrevisaoSemanaScreen({super.key, required this.clima});
 
   @override
   Widget build(BuildContext context) {
