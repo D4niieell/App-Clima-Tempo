@@ -1,0 +1,12 @@
+ClimaApp
+
+Qual a diferença entre Expanded e Flexible?
+O Expanded obriga o filho a ocupar todo o espaço livre que recebeu na Row ou Column. 
+O Flexible também divide o espaço livre, mas deixa o filho ocupar só o que precisa, até esse limite. 
+Na prática, Expanded é um Flexible com fit: 
+FlexFit.tight.
+
+E se dois elementos têm valores de flex diferentes?
+O flex define a proporção do espaço livre que cada filho recebe. 
+Se um elemento tem flex: 2 e outro flex: 1, o primeiro fica com o dobro do espaço do segundo (2/3 contra 1/3 do espaço livre). 
+Sem flex informado, o padrão é 1.
