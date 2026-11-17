@@ -127,14 +127,18 @@
 // a. Link do commit no github
 
 // Importa as duas telas do app.
+
 import 'package:flutter/material.dart';
 import 'package:app_clima_tempo/models/clima.dart';
 import 'package:app_clima_tempo/screens/verClima.dart';
 import 'package:app_clima_tempo/screens/classe_Card.dart';
 import 'package:app_clima_tempo/widgets/classe_ListTile.dart';
 
+import 'screens/formulario.dart';
+
 import 'screens/clima_atual.dart';
 import 'screens/previsao_semana.dart';
+import 'widgets/contador.dart';
 
 // Ponto de entrada do aplicativo.
 void main() {
@@ -178,7 +182,7 @@ class MyApp extends StatelessWidget {
     // MaterialApp configura o app com o estilo Material Design.
     return const MaterialApp(
       // A tela inicial agora é a HomeScreen.
-      home: HomeScreen(),
+      home: CadastroScreen(),
     );
   }
 }
